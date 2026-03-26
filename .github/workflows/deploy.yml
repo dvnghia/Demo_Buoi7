@@ -28,4 +28,4 @@ jobs:
           context: . # Đường dẫn chứa Dockerfile (thư mục hiện tại)
           push: true
           # Tự động Build Image từ Dockerfile (Sử dụng tags) [cite: 707]
-          tags: ${{ secrets.DOCKER_USERNAME }}/ten-ung-dung-spring-boot-cua-ban:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/duanjava:latest
