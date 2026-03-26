@@ -7,6 +7,10 @@ on:
 permissions:
   contents: read
 
+# Thêm cấu hình này để tắt cảnh báo và chuyển sang dùng Node.js 24
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -15,7 +19,7 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4
 
-      # (Khuyến nghị) thiết lập builder tốt hơn cho docker buildx
+      # Thiết lập builder tốt hơn cho docker buildx
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
