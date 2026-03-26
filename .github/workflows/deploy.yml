@@ -28,7 +28,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           username: dvnghia
-          password: ${{ secrets.DOCKER_TOKEN }}
+          password: ${{ secrets.DVNGHIA }}
 
       # 2) Tự động Build image từ Dockerfile và 3) Push lên Docker Hub
       - name: Build and push
