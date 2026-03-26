@@ -1,0 +1,31 @@
+[cite_start]name: Deploy Spring Boot to Docker Hub # Tên của "vở kịch" hiển thị trên web [cite: 272]
+
+on:
+  push:
+    [cite_start]branches: [ "main" ] # Chạy khi có code mới đẩy lên nhánh main [cite: 403, 404, 705]
+
+jobs:
+  build_and_push_docker:
+    [cite_start]runs-on: ubuntu-latest # Mượn máy ảo Ubuntu của GitHub để chạy [cite: 272, 411, 412]
+
+    steps:
+      # Bước 1: Lấy mã nguồn từ Github [cite: 813]
+      - name: Checkout mã nguồn
+        [cite_start]uses: actions/checkout@v4 # Action lấy code từ Github [cite: 813]
+
+      # Bước 2: Tự động đăng nhập vào Docker Hub [cite: 706]
+      - name: Đăng nhập vào Docker Hub
+        [cite_start]uses: docker/login-action@v3 # Action Đăng nhập Docker Hub [cite: 815, 816]
+        with:
+          # Lấy thông tin mật đã giấu đi trong GitHub Secrets [cite: 289]
+          [cite_start]username: ${{ secrets.DOCKER_USERNAME }} [cite: 290]
+          [cite_start]password: ${{ secrets.DOCKER_PASSWORD }} [cite: 290]
+
+      # Bước 3: Tự động Build và Push Image lên Docker Hub của cá nhân [cite: 707, 708]
+      - name: Build và push Docker image
+        [cite_start]uses: docker/build-push-action@v5 # Action Đóng gói & Đẩy Image [cite: 817, 818]
+        with:
+          context: . # Đường dẫn chứa Dockerfile (thư mục hiện tại)
+          push: true
+          # Tự động Build Image từ Dockerfile (Sử dụng tags) [cite: 707]
+          tags: ${{ secrets.DOCKER_USERNAME }}/ten-ung-dung-spring-boot-cua-ban:latest
