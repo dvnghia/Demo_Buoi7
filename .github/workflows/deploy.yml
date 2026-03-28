@@ -40,7 +40,9 @@ jobs:
           tags: |
             dvnghia/demo_bai7:latest
             dvnghia/demo_bai7:${{ github.sha }}
-                  - name: Triển khai lên DevOps Classroom
+            
+      # 4) Triển khai lên server
+      - name: Triển khai lên DevOps Classroom
         run: |
           REPO="dvnghia/demo_bai7"
           CONTAINER_PORT=80
